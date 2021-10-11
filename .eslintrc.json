@@ -1,0 +1,21 @@
+{
+  "extends": ["airbnb", "prettier"],
+  "parser": "babel-eslint",
+  "plugins": ["prettier"],
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "react/destructuring-assignment": "off",
+    "react/prop-types": "off",
+    "react/no-access-state-in-setstate": "off",
+    "import/no-unresolved": "off",
+    "react/button-has-type": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/no-unescaped-entities": "off",
+    "no-console": "off",
+    "no-param-reassign": 0,
+    "react/prefer-stateless-function": 0,
+    "no-unused-vars": 0
+  }
+}

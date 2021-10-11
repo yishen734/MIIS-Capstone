@@ -1,0 +1,21 @@
+/* ./src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .highlight1 {
+    @apply rounded-md shadow-md;
+    @apply bg-yellow-500  text-white;
+  }
+
+  .highlight2 {
+    @apply rounded-md shadow-md;
+    @apply bg-blue-500  text-white;
+  }
+
+  .highlight3 {
+    @apply rounded-md shadow-md;
+    @apply bg-green-500  text-white;
+  }
+}
