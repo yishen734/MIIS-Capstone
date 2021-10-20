@@ -5,13 +5,6 @@ import { MainPageContext } from '../../pages/PageMain/PageMain'
 import CMU from '../../assets/imgs/CMU.png'
 
 export default function Upload({ getStarted }) {
-  //   const { setShowDescription, setShowSummary, setShowTranscript } = React.useContext(MainPageContext)
-  //   const hideDescription = () => {
-  //     setShowDescription(false)
-  //     setShowSummary(true)
-  //     setShowTranscript(false)
-  //   }
-
   return (
     <div className="flex flex-col items-center w-full">
       {/* Upload icon */}

@@ -1,5 +1,7 @@
 /* eslint-disable import/no-cycle */
 import React from 'react'
+import ReactDOM from 'react-dom'
+import Highlighter from 'react-highlight-words'
 import Tab from './Tab'
 
 export default function Trancript() {
@@ -45,6 +47,13 @@ export default function Trancript() {
           egestas laoreet elementum.
         </p>
       </div>
+
+      <Highlighter
+        highlightClassName="YourHighlightClass"
+        searchWords={['and or', 'or', 'the']}
+        autoEscape
+        textToHighlight="The dog is chasing the cat. Or perhaps they're just playing?"
+      />
     </div>
   )
 }
