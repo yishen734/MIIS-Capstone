@@ -3,9 +3,11 @@ import React from 'react'
 import { SplitPaneProvider } from '../../components/Common/SplitPaneProvider'
 import Summerizer from '../../components/Summerizer/Summerizer'
 import Video from '../../components/Video/Video'
+import NavBar from '../../components/NavigationBar/NavBar'
 
 export const MainPageContext = React.createContext()
 export default function PageMain() {
+  const [lectureID, setLectureID] = React.useState(null)
   const [showDescription, setShowDescription] = React.useState(true)
   const [showSummary, setShowSummary] = React.useState(false)
   const [showTranscript, setShowTranscript] = React.useState(false)
@@ -15,6 +17,8 @@ export default function PageMain() {
     <div>
       <MainPageContext.Provider
         value={{
+          lectureID,
+          setLectureID,
           showDescription,
           setShowDescription,
           showSummary,
@@ -25,9 +29,10 @@ export default function PageMain() {
           setPlayerCurPosition,
         }}
       >
+        <NavBar />
         <SplitPaneProvider>
-          <Summerizer />
-          <Video />
+          <Summerizer lectureID={lectureID} />
+          <Video lectureID={lectureID} />
         </SplitPaneProvider>
       </MainPageContext.Provider>
     </div>

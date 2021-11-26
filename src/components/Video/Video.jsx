@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import React from 'react'
-import Upload from './Upload'
+import Upload from '../Intro/Upload'
 import Player from './Player'
 import { SplitPaneContext } from '../Common/SplitPaneProvider'
 import { MainPageContext } from '../../pages/PageMain/PageMain'

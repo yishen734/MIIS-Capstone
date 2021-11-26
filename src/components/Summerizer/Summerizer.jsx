@@ -2,11 +2,12 @@
 import React from 'react'
 import { SplitPaneContext } from '../Common/SplitPaneProvider'
 import { MainPageContext } from '../../pages/PageMain/PageMain'
-import Description from './Description'
+import Description from '../Intro/Description'
 import Summary from './Summary'
 import Transcript from './Transcript'
 
-export default function Summerizer() {
+export default function Summerizer({ lectureID }) {
+  console.log('lectureID', lectureID)
   const leftRef = React.createRef()
   const { leftWidth, setLeftWidth } = React.useContext(SplitPaneContext)
   const { showSummary, showDescription, showTranscript } = React.useContext(MainPageContext)
@@ -27,8 +28,8 @@ export default function Summerizer() {
         </div>
         <div className="ml-28 mt-12">
           {showDescription && <Description />}
-          {showSummary && <Summary />}
-          {showTranscript && <Transcript />}
+          {showSummary && <Summary lectureID={lectureID} />}
+          {showTranscript && <Transcript lectureID={lectureID} />}
         </div>
       </div>
     </div>

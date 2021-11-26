@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import CommentIcon from '../../assets/imgs/comment.svg'
 import LikeIcon from '../../assets/imgs/like.svg'
 import PlaceholderUserIcon from '../../assets/imgs/Alan.jpg'
@@ -6,7 +7,13 @@ import SendIcon from '../../assets/imgs/send.svg'
 import ShareIcon from '../../assets/imgs/share.svg'
 import IconButton from '../Common/IconButton'
 
-export default function VideoCard() {
+export default function VideoCard({ lecture, lectureID, setLectureID }) {
+  const link = `/MIIS-Capstone/${lecture}`
+  function setID() {
+    setLectureID(lecture)
+    console.log('lectureID', lectureID)
+  }
+  console.log(lecture)
   return (
     <div className="flex px-4 py-4 border-t-1/2 gap-3 theme-font">
       <IconButton
@@ -58,6 +65,16 @@ export default function VideoCard() {
           <div className="group flex items-center gap-3 cursor-pointer">
             <img src={SendIcon} alt="icon" className="w-9 h-9 px-2 rounded-2xl group-hover:bg-yellow-100" />
           </div>
+
+          {/* Redirect */}
+          {/* <Link to={link}> */}
+          <button
+            className="bg-indigo-600 rounded-full text-white focus:outline-none hover:bg-indigo-700 w-36 h-10 text-sm"
+            onClick={setID}
+          >
+            {lecture}
+          </button>
+          {/* </Link> */}
         </div>
       </div>
     </div>

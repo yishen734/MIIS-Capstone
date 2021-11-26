@@ -1,18 +1,36 @@
+/* eslint-disable no-undef */
 /* eslint-disable import/no-cycle */
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Tab from './Tab'
 import Segment from './Segment'
 import SearchBar from './SearchBar'
+// import { NavLink } from 'react-router-dom'
 
-export default function Summary() {
+export default function Summary({ lectureID }) {
+  const [data, setData] = useState([])
+  const [searchResult, setSearchResult] = useState([])
+  async function fetchSummaries() {
+    const response = await fetch(`http://127.0.0.1:5000/summary?video_idx=${lectureID}`)
+    // const response = await fetch('http://127.0.0.1:5000/summary?video_idx=11692_1')
+    if (!response.ok) {
+      setData(null)
+    }
+    const result = await response.json()
+    setData(result)
+  }
+
+  useEffect(() => {
+    console.log(222)
+    fetchSummaries()
+  }, [lectureID])
+
   return (
     <div>
       {/* Tab and search bar */}
       <div className="flex items-center gap-8">
         <Tab />
-        <SearchBar />
+        <SearchBar setSearchResult={setSearchResult} />
       </div>
-
       {/* Relevant degree intro */}
       <div className="flex text-md mt-16 gap-8">
         <div className="flex gap-2 items-center">
@@ -30,17 +48,13 @@ export default function Summary() {
           Somewhat Relevant
         </div>
       </div>
-
       {/* Segments */}
       <div className="flex flex-col justify-between gap-12 mt-5 mb-20">
-        <Segment ID="0" highlight={1} start="01:30" end="10:20" />
-        <Segment ID="1" highlight={2} start="21:21" end="24:50" />
-        <Segment ID="2" highlight={3} start="32:36" end="39:42" />
-        <Segment ID="3" start="46:32" end="49:48" />
-        <Segment ID="4" start="51:36" end="59:42" />
-        <Segment ID="6" start="01:01:20" end="01:08:20" />
-        <Segment ID="7" start="01:09:20" end="01:20:42" />
-        <Segment ID="8" start="01:13:35" end="01:26:57" />
+        {data != null &&
+          data.map((el, id) =>
+            /* prettier-ignore */
+            <Segment ID={id} highlight={searchResult} start={el.start_timestamp} end="10:20" summaryBrief={el.summary_brief} summaryDetail={el.summary_detailed} />
+          )}
       </div>
     </div>
   )

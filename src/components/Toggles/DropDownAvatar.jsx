@@ -56,7 +56,7 @@ export default function DropDownAvatar({ galleryShow, setGalleryShow }) {
               )}
             </Menu.Item>
 
-            {/* Outfits */}
+            {/* Settings */}
             <Menu.Item>
               {({ active }) => (
                 <a

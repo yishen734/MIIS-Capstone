@@ -1,13 +1,13 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable jsx-a11y/no-redundant-roles */
 /* This example requires Tailwind CSS v2.0+ */
 import { Dialog, Transition, Popover } from '@headlessui/react'
 import { ArrowSmLeftIcon } from '@heroicons/react/outline'
-import { Fragment, useEffect, useState } from 'react'
+import { React, Fragment, useEffect, useState } from 'react'
 import { APIGetFeeds } from '../../apis/feed'
-// import base64 from 'base-64'
 import VideoCard from './VideoCard'
 
-export default function Gallery({ galleryShow, setGalleryShow }) {
+export default function Gallery({ galleryShow, setGalleryShow, lectureID, setLectureID }) {
   const [feeds, setFeeds] = useState([])
 
   const closeAll = () => {
@@ -64,25 +64,11 @@ export default function Gallery({ galleryShow, setGalleryShow }) {
                   </div>
 
                   <div className="mt-6 flex-1">
-                    {/* Feeds */}
-                    {/* <ul role="list">
-                      {feeds.map((feed) => (
-                        // Each feed card
-                        <div key={feed.timestamp}>
-                          <FeedCard
-                            feed={feed}
-                            popupComment={popupComment}
-                            setPopupComment={setPopupComment}
-                          />
-                        </div>
-                      ))}
-                    </ul> */}
-
-                    <VideoCard />
-                    <VideoCard />
-                    <VideoCard />
-                    <VideoCard />
-                    <VideoCard />
+                    <VideoCard lecture="11692_1" lectureID={lectureID} setLectureID={setLectureID} />
+                    <VideoCard lecture="lecture2" lectureID={lectureID} setLectureID={setLectureID} />
+                    <VideoCard lecture="lecture3" lectureID={lectureID} setLectureID={setLectureID} />
+                    <VideoCard lecture="lecture4" lectureID={lectureID} setLectureID={setLectureID} />
+                    <VideoCard lecture="lecture5" lectureID={lectureID} setLectureID={setLectureID} />
                   </div>
                 </div>
               </div>

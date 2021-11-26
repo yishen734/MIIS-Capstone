@@ -5,9 +5,13 @@ import { BsPlayCircleFill } from 'react-icons/bs'
 import { MainPageContext } from '../../pages/PageMain/PageMain'
 import PlayButton from './PlayButton'
 
-export default function Segment({ ID, highlight, start, end }) {
+export default function Segment({ ID, highlight, start, end, summaryBrief, summaryDetail }) {
   const highlights = ['', 'highlight1', 'highlight2', 'highlight3']
-  const highlightDegree = 0 ? { highlight } === null : highlights[highlight]
+  let highlightDegree = highlights[0]
+  if (highlight.includes(start)) {
+    highlightDegree = highlights[highlight.indexOf(start) + 1]
+  }
+
   const { setPlayerCurPosition } = React.useContext(MainPageContext)
 
   const convertToSeconds = (time) => {
@@ -30,18 +34,20 @@ export default function Segment({ ID, highlight, start, end }) {
     <div className="font-medium">
       <div className="flex items-center text-xl gap-16">
         <p className="font-bold">SEGMENT {ID}</p>
-        <div>
-          {start} ~ {end}
-        </div>
+        <div>{start}</div>
         {/* <BsPlayCircleFill className="w-6 h-6" onClick={seekTo} /> */}
         <PlayButton onClick={seekTo} />
       </div>
 
-      <div className="flex max-w-3xl text-lg mt-2 -ml-2">
-        <p className={`px-2 py-1 ${highlightDegree}`}>
-          Summary summary summary summary summary summary summary summary summary summary summary summary
-          summary summary summary summary summary summary summary summary summary summary summary summary
-        </p>
+      <div className="flex flex-col max-w-3xl text-lg mt-2 -ml-2">
+        <div className={`px-2 pt-1 ${highlightDegree}`}>
+          <p className="font-bold">Brief:</p>
+          <p> {summaryBrief} </p>
+        </div>
+        <div className={`px-2 pt-6 pb-1 ${highlightDegree}`}>
+          <p className="font-bold">Detail:</p>
+          <p> {summaryDetail} </p>
+        </div>
       </div>
     </div>
   )

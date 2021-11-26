@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import React, { useContext, useState } from 'react'
 import BellIcon from '../../assets/imgs/bell.svg'
 import FriendsIcon from '../../assets/imgs/friends.svg'
@@ -6,6 +7,7 @@ import Button from '../Common/Button'
 import IconButton from '../Common/IconButton'
 import DropDownAvatar from '../Toggles/DropDownAvatar'
 import Gallery from '../Gallery/Gallery'
+import { MainPageContext } from '../../pages/PageMain/PageMain'
 
 export default function NavBar() {
   const toRender = (
@@ -29,6 +31,7 @@ export default function NavBar() {
 }
 
 function NavBarUserButtons() {
+  const { lectureID, setLectureID } = React.useContext(MainPageContext)
   const [rightSlideNotification, setRightSlideNotification] = useState(false)
   const [galleryShow, setGalleryShow] = useState(false)
 
@@ -47,7 +50,12 @@ function NavBarUserButtons() {
         <DropDownAvatar galleryShow={galleryShow} setGalleryShow={setGalleryShow} />
 
         {/* Gallery */}
-        <Gallery galleryShow={galleryShow} setGalleryShow={setGalleryShow} />
+        <Gallery
+          galleryShow={galleryShow}
+          setGalleryShow={setGalleryShow}
+          lectureID={lectureID}
+          setLectureID={setLectureID}
+        />
       </div>
     </div>
   )

@@ -17,13 +17,13 @@ export default function Tab() {
 
   return (
     <div className="flex gap-4">
-      {/* Button: SUMMERY */}
+      {/* Button: SUMMARY */}
       <button
         className="transition-colors duration-100 transform text-xl font-medium w-36 h-12 
                  bg-indigo-600 rounded-md hover:bg-indigo-500 text-white"
         onClick={() => switchToSummary()}
       >
-        SUMMERY
+        SUMMARY
       </button>
 
       {/* Button: TRANSCRIPT */}
